@@ -64,6 +64,7 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set expandtab
+au BufWinEnter,BufNewFile * silent tabo
 
 " Auto indent pasted text
 nnoremap p p=`]<C-o>
@@ -115,3 +116,27 @@ set smartcase       " ...unless we type a capital
 
 " ================ Custom Settings ========================
 so ~/.yadr/vim/settings.vim
+syntax enable
+set background=dark
+colorscheme solarized
+let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ -g ""'
+let g:ctrlp_max_files = 0
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+set textwidth=80
+set colorcolumn=81
+au BufEnter * set colorcolumn=81
+set relativenumber

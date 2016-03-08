@@ -107,11 +107,12 @@
 [push]
   # 'git push' will push the current branch to its tracking branch
   # the usual default is to push all branches
-  default = upstream
+	default = current
 [core]
   autocrlf = false
   editor = vim
   excludesfile = ~/.yadr/git/gitignore
+	precomposeunicode = true
 [advice]
   statusHints = false
 [diff]
@@ -122,6 +123,13 @@
 [rerere]
   # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
-  enabled = true
+	enabled = 1
 [include]
   path = .gitconfig.user
+[user]
+	name = Melanie Cebula
+	email = melanie.cebula@airbnb.com
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true

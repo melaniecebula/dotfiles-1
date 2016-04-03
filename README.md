@@ -1,3 +1,4 @@
+     (Melanie's)*
      _     _           _
     | |   | |         | |
     | |___| |_____  __| | ____
@@ -5,6 +6,8 @@
      _____| / ___ ( (_| | |
     (_______\_____|\____|_|
 
+    #*I've made several changes to YADR to fit my style and own needs
+    # I have mostly moved everything from my old lazy dotfiles to the cleverly named dotfiles-1
     # Yet Another Dotfile Repo v1.1
     # Now with Prezto and Vundle!
 

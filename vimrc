@@ -64,7 +64,7 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set expandtab
-au BufWinEnter,BufNewFile * silent tabo
+au BufWinEnter,BufNewFile * silent tab
 
 " Auto indent pasted text
 nnoremap p p=`]<C-o>
@@ -136,7 +136,47 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
+set relativenumber
+set encoding=utf-8
+set diffopt+=iwhite
+
+setlocal textwidth=100
+set colorcolumn=101
+au BufEnter <buffer> set colorcolumn=101
+
 set textwidth=80
 set colorcolumn=81
 au BufEnter * set colorcolumn=81
-set relativenumber
+
+let g:ctrlp_lazy_update = 100 "Only refreshes the results every 100ms so if you type fast searches don't pile up
+let g:ctrlp_user_command = 'find %s -type f | egrep -iv "(\.(eot|gif|gz|ico|jpg|jpeg|otf|png|psd|pyc|svg|ttf|woff|zip)$)|(/\.)|((^|\/)tmp\/)"' "Quicker indexing
+
+"syntastic
+" Always add any detected errors into the location list
+let g:syntastic_always_populate_loc_list = 1
+
+" Don't auto-open it when errors/warnings are detected, but auto-close when no
+" more errors/warnings are detected.
+let g:syntastic_auto_loc_list = 2
+
+" Highlight syntax errors where possible
+let g:syntastic_enable_highlighting = 1
+
+" Show this many errors/warnings at a time in the location list
+let g:syntastic_loc_list_height = 5
+
+" Don't run checkers when saving and quitting--only on saving
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_error_symbol         = '×' " There are better characters, but Hackpad won't show them
+let g:syntastic_warning_symbol       = '⚠'
+let g:syntastic_style_error_symbol   = '⚠'
+let g:syntastic_style_warning_symbol = '⚠'
+
+let g:syntastic_javascript_checkers    = ['eslint']
+let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint') 
+let g:syntastic_javascript_eslint_exec = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+let g:syntastic_json_checkers          = ['jsonlint']
+let g:syntastic_ruby_checkers          = ['rubocop']
+let g:syntastic_scss_checkers          = ['scss_lint']
+let g:syntastic_vim_checkers           = ['vint']

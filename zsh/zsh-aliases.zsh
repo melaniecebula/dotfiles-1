@@ -18,3 +18,5 @@ alias vi='vim'
 # to find all files containing 'foo' in the name
 function fn() { ls **/*$1* }
 
+# TODO: find a better place for this
+eval "$(rbenv init -)"
